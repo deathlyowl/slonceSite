@@ -34,6 +34,8 @@ var moveHand = function() {
 var enableAnimations = function() {
 	$('#ticker').css("-webkit-transition", ".75s ease-in");
 	$('#hand').css("-webkit-transition", ".75s ease-in");
+	$('#ticker').css("-moz-transition", ".75s ease-in");
+	$('#hand').css("-moz-transition", ".75s ease-in");
 }
 
 var setPagesize = function() {
