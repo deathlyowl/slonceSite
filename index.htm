@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Słońce</title>
+	<link rel="stylesheet" href="style.css">
+    <script src="jquery.js"></script>
+    <script src="functions.js"></script>
+    <script>
+	window.onload = function() {
+		moveHand();
+		setInterval(moveHand, 1000);
+		
+		setTimeout(enableAnimations, 1000);
+		//$('#feedback').text(top);
+	}
+    </script>
+</head>
+<body>
+	<h1 id="feedback">Feedback</h1>
+	<div id='screenBackground' class='screen'>
+		
+	</div>
+
+	<div class='screen'>
+		<div id='pretwillight'></div>
+		<div id='twillightspace'></div>
+		<div id='posttwillight'></div>
+	</div>
+	
+	<div class='screen'>
+		<div id='prenight'></div>
+		<div id='nightspace'></div>
+		<div id='postnight'></div>
+	</div>
+
+	<div class='screen' id='lines'></div>
+	<div class='screen' id='labels'></div>
+	
+	<div class='screen'>
+		<div id='hand'>
+			<div id='ticker'></div>
+		</div>
+	</div>
+</body>
+</html>

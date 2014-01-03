@@ -1,0 +1,60 @@
+*{margin:0; padding:0;}
+
+body {
+	background: #ABE;
+}
+
+/* Screen */
+.screen, .screen *{width:320px;}
+.screen{
+	height: 568px;
+	position:fixed;
+	right: 25%;
+	margin-right:-160px;
+	margin-top:-284px;
+	border-radius:20px;
+	top: 50%;
+	overflow:hidden;
+	-webkit-transition: .75s ease-in;
+}
+
+#screenBackground {
+	background: #F4515D;
+	background: #FCA23C;
+	background: #FFCF41;
+	background: #0097FD;
+}
+
+#pretwillight, #posttwillight, #prenight, #postnight {
+	opacity: .1;
+	background: black;
+}
+
+#pretwillight 	{ height: 0px;}
+#twillightspace	{ height: 568px;}
+#posttwillight 	{ height: 568px;}
+
+#prenight 		{ height: 0px;}
+#nightspace		{ height: 568px;}
+#postnight 		{ height: 568px;}
+
+.screen #hand {
+	height:2px;
+    background: rgba(256, 256, 256, .5);
+
+	position:relative;
+	top: 180px;
+}
+
+.screen #hand #ticker {
+	background: white;
+	height: 2px;
+	width: 0px;
+}
+
+#lines 	{ 
+	background: url('lines.png');
+}
+#labels { 
+	background: url('labels.png');
+}
