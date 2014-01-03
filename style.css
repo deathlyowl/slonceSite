@@ -1,7 +1,16 @@
 *{margin:0; padding:0;}
 
 body {
-	background: #ABE;
+
+	font-family: "Futura-CondensedMedium";
+	color: white;
+	-webkit-transition: .75s ease-in;
+}
+
+#feedback{
+	position:fixed;
+	text-align:center;
+	width: 100%;
 }
 
 /* Screen */
@@ -9,7 +18,7 @@ body {
 .screen{
 	height: 568px;
 	position:fixed;
-	right: 25%;
+	right: 50%;
 	margin-right:-160px;
 	margin-top:-284px;
 	border-radius:20px;
@@ -17,14 +26,9 @@ body {
 	overflow:hidden;
 	-webkit-transition: .75s ease-in;
 }
-
-#screenBackground {
-	background: #F4515D;
-	background: #FCA23C;
-	background: #FFCF41;
-	background: #0097FD;
+#pretwillight, #posttwillight, #prenight, #postnight, #nightspace, #twillightspace {
+	-webkit-transition: .75s ease-in;
 }
-
 #pretwillight, #posttwillight, #prenight, #postnight {
 	opacity: .1;
 	background: black;
@@ -54,7 +58,101 @@ body {
 
 #lines 	{ 
 	background: url('lines.png');
+	opacity:0;
 }
 #labels { 
 	background: url('labels.png');
+	opacity:0;
+}
+@-webkit-keyframes spin { 100% { -webkit-transform: rotate(45deg); } }
+
+/* Logo */
+#logo {
+	background: url('logo.png');
+	width:160px;
+	height:160px;
+	position:fixed;
+	left:50%;
+	top:50%;
+	margin-left:-80px;
+	margin-top:-80px;
+    -webkit-animation:spin 1s ease-in-out infinite;
+	-webkit-transition: .75s ease-in-out;
+	opacity:0;
+}
+
+
+#indicator {
+	background-color: rgba(0,0,0,.5);
+	border-radius:40px;
+	width:80px;
+	height:80px;
+	position:fixed;
+	left:50%;
+	top:50%;
+	margin-left:-40px;
+	margin-top:-40px;
+	opacity:1;
+}
+
+.page {
+	height:200px;
+}
+
+#menu {
+	opacity:0;
+	height: 20px;
+	width: 144px;
+	position:fixed;
+	right: 50%;
+	top: 50%;
+	margin-top:284px;
+	margin-right:-72px;
+	overflow:hidden;
+	-webkit-transition: .75s ease-in;
+	text-align:center;
+}
+#menu li {
+	background: white;
+	border-radius:5px;
+	width:6px;
+	height:6px;
+	display:block;
+	float:left;
+	margin:5px;
+	opacity: .2;
+}
+
+#button {
+	height: 20px;
+	width: 40px;
+	position:fixed;
+	right: 50%;
+	top: 50%;
+	margin-top:304px;
+	margin-right:-20px;
+	-webkit-transition: .75s ease-in;
+    -webkit-mask-image: url('arrow.png');
+}
+
+
+/* Labels */
+#left, #right{
+	height: 548px;
+	width:300px;
+	padding:10px;
+}
+
+#left{
+	margin-right:160px;
+	text-align:right;
+	line-height:568px;
+	font-size: 4em;
+}
+
+#right{
+	margin-right:-480px;
+	line-height:568px;
+	text-align:left;
+	font-size: 4em;
 }

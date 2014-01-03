@@ -5,22 +5,97 @@
 	<link rel="stylesheet" href="style.css">
     <script src="jquery.js"></script>
     <script src="functions.js"></script>
+    <script src="sunclock.js"></script>
     <script>
-	window.onload = function() {
-		moveHand();
-		setInterval(moveHand, 1000);
+	var lock = false;
+	var appColors = new Array( "#F4515D", "#FCA23C", "#FFCF41", "#0097FD" );
+
+	var colors = new Array( "#FF3B30", "#FFCC00", "#4CD964", "#34AADC",
+							"#007AFF", "#5856D6", "#FF2D55", "#E0F8D8",
+							"#D1EEFC", "#C7C7CC", "#8E8E93", "#FF4981",
+							"#FF3A2D", "#BDBEC2", "#1F1F21", "#FF1300",
+							"#F7F7F7", "#FFD3E0" );
+
+	var parameters = [
+	// [00] bars
+	// [01] lines
+	// [02] labels
+	// [03] hand
+	// [04] background
+	// [05] screen
+	// [06] logo
+	// [07] left
+	// [08] right
+	// [09] textcolor
+	  [0, 0, 0, 0, appColors[0], appColors[0], 1, "Słońce", "", "white", 0],
+	  [0, 0, 0, 0, colors[16], appColors[0], 1, "Słońce", ", an app", appColors[0], 0],
+	  [0, 0, 1, 1, appColors[3], appColors[3], 0, "Słońce", ", the clock", colors[16], 0],
+	  [2, 1, 1, 1, appColors[3], appColors[3], 0, "Słońce", ", the sunclock", colors[16] ,0],
+	  [2, 0, 0, 0, appColors[3], appColors[3], 0, "", "", colors[16], 0],
+	  [1, 0, 0, 0, appColors[3], appColors[3], 0, "civil", "twillight", colors[16], 1, "url('civil.png')"],
+	  [2, 0, 0, 0, appColors[3], appColors[3], 0, "navigational", "twillight", colors[16],1, "url('navis.png')"],
+	  [3, 0, 0, 0, appColors[3], appColors[3], 0, "astronomical", "twillight", colors[16],1, "url('astro.png')"],
+	  [0, 0, 0, 0, appColors[0], appColors[0], 1, "Słońce", "", "white", 0]
+	];
+	var page = 0;
+	var pageHeight = 700;
+	
+	var setPage = function(page) {
+		// Page configuration
+		setBars(calculations, parameters[page][0]);
 		
+		$('#lines').css("opacity", parameters[page][1]);
+		$('#labels').css("opacity", parameters[page][2]);
+		$('#hand').css("opacity", parameters[page][3]);
+		
+		$('body').css("background",parameters[page][4]);
+		$('#screenBackground').css("background", parameters[page][5]);
+		
+		$('#logo').css("opacity", parameters[page][6]);
+		
+		$('#left').text(parameters[page][7]);
+		$('#right').html(parameters[page][8]);
+		
+		$('#left').css("color", parameters[page][9]);
+		$('#right').css("color", parameters[page][9]);
+		
+		$('#indicator').css("opacity", parameters[page][10]);
+		$('#indicator').css("background-image", parameters[page][11]);
+		
+		
+		$( "ul li" ).css("opacity", .25);
+		$( "ul li" ).css("background", parameters[page][9]);
+		$( "ul li:nth-child(" + (page+1) +")" ).css("opacity", 1);
+		$( "#button" ).css("background", parameters[page][9]);
+	}
+	
+	window.onload = function() {
+		setPagesize();
+		calculations = calculate();
+		moveHand();
+	
+		setInterval(moveHand, 1000);
 		setTimeout(enableAnimations, 1000);
-		//$('#feedback').text(top);
+				
+		setPage(page);
+	
+		$( '#button' ).click(function() {
+		  setPage(++page);
+		});
+		
+		
+	
 	}
     </script>
 </head>
 <body>
-	<h1 id="feedback">Feedback</h1>
-	<div id='screenBackground' class='screen'>
-		
-	</div>
+	<div id='button'></div>
+	<!-- Feedback -->
+	<h1 id="feedback"></h1>
 
+	<!-- Screen -->
+	<div id='screenBackground' class='screen'></div>
+	
 	<div class='screen'>
 		<div id='pretwillight'></div>
 		<div id='twillightspace'></div>
@@ -36,10 +111,30 @@
 	<div class='screen' id='lines'></div>
 	<div class='screen' id='labels'></div>
 	
-	<div class='screen'>
-		<div id='hand'>
-			<div id='ticker'></div>
-		</div>
-	</div>
+	<div class='screen'><div id='hand'><div id='ticker'></div></div></div>
+	
+
+	<!-- Logo -->
+	<div id='logo'></div>
+
+	<div id='indicator'></div>
+
+	<!-- Feedback -->
+	<div class='screen' id='left'>Słońce</div>
+	<div class='screen' id='right'>, the clock</div>
+	<ul id='menu'>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	
+	<!-- Pages -->
+	<section class='page'></section>
 </body>
 </html>
