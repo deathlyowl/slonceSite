@@ -2,12 +2,15 @@
 <html>
 <head>
 	<title>Słońce</title>
+	<meta charset="utf-8">
 	<link rel="stylesheet" href="style.css">
     <script src="jquery.js"></script>
     <script src="functions.js"></script>
     <script src="sunclock.js"></script>
     <script>
-	var lock = false;
+	
+	var pagesCount = 7;
+	var direction = 0;
 	var appColors = new Array( "#F4515D", "#FCA23C", "#FFCF41", "#0097FD" );
 
 	var colors = new Array( "#FF3B30", "#FFCC00", "#4CD964", "#34AADC",
@@ -27,14 +30,17 @@
 	// [07] left
 	// [08] right
 	// [09] textcolor
+	
 	  [0, 0, 0, 0, appColors[0], appColors[0], 1, "Słońce", "", "white", 0],
-	  [0, 0, 0, 0, colors[16], appColors[0], 1, "Słońce", ", an app", appColors[0], 0],
-	  [0, 0, 1, 1, appColors[3], appColors[3], 0, "Słońce", ", the clock", colors[16], 0],
-	  [2, 1, 1, 1, appColors[3], appColors[3], 0, "Słońce", ", the sunclock", colors[16] ,0],
-	  [2, 0, 0, 0, appColors[3], appColors[3], 0, "", "", colors[16], 0],
+	  [0, 0, 0, 0, colors[16], appColors[0], 1, "Słońce", "an app", appColors[0], 0],
+	  [0, 0, 1, 1, appColors[3], appColors[3], 0, "Słońce", "the clock", colors[16], 0],
+	  [2, 1, 1, 1, appColors[3], appColors[3], 0, "Słońce", "the sunclock", colors[16] ,0],
+	  //[2, 0, 0, 0, appColors[3], appColors[3], 0, "", "", colors[16], 0],
 	  [1, 0, 0, 0, appColors[3], appColors[3], 0, "civil", "twillight", colors[16], 1, "url('civil.png')"],
 	  [2, 0, 0, 0, appColors[3], appColors[3], 0, "navigational", "twillight", colors[16],1, "url('navis.png')"],
 	  [3, 0, 0, 0, appColors[3], appColors[3], 0, "astronomical", "twillight", colors[16],1, "url('astro.png')"],
+
+	  
 	  [0, 0, 0, 0, appColors[0], appColors[0], 1, "Słońce", "", "white", 0]
 	];
 	var page = 0;
@@ -58,6 +64,7 @@
 		
 		$('#left').css("color", parameters[page][9]);
 		$('#right').css("color", parameters[page][9]);
+		$('#subtext').css("color", parameters[page][9]);
 		
 		$('#indicator').css("opacity", parameters[page][10]);
 		$('#indicator').css("background-image", parameters[page][11]);
@@ -67,6 +74,27 @@
 		$( "ul li" ).css("background", parameters[page][9]);
 		$( "ul li:nth-child(" + (page+1) +")" ).css("opacity", 1);
 		$( "#button" ).css("background", parameters[page][9]);
+		$( "#backButton" ).css("background", parameters[page][9]);
+		$( "#owl" ).css("background", parameters[page][9]);
+		if(page == 0)
+		{
+			$( "#backButton" ).css("opacity", 0);
+		}
+		else {
+			$( "#backButton" ).css("opacity", 1);
+		}
+		
+		if(page == pagesCount)
+		{
+			$( "#button" ).css("opacity", 0);
+			$( "#appStore" ).css("display", "block");
+			$( "#appStore" ).css("opacity", 1);
+		}
+		else {
+			$( "#button" ).css("opacity", 1);
+			$( "#appStore" ).css("display", "none");
+			$( "#appStore" ).css("opacity", 0);
+		}
 	}
 	
 	window.onload = function() {
@@ -83,6 +111,11 @@
 		  setPage(++page);
 		});
 		
+	
+		$( '#backButton' ).click(function() {
+		  setPage(--page);
+		});
+		
 		
 	
 	}
@@ -90,6 +123,10 @@
 </head>
 <body>
 	<div id='button'></div>
+	<div id='backButton'></div>
+	
+
+	<a href="" id="owl"></a>
 	<!-- Feedback -->
 	<h1 id="feedback"></h1>
 
@@ -111,8 +148,13 @@
 	<div class='screen' id='lines'></div>
 	<div class='screen' id='labels'></div>
 	
-	<div class='screen'><div id='hand'><div id='ticker'></div></div></div>
+	<div class='screen' id ='handScreen'>
+		<div id='hand'>
+			<div id='ticker'></div>
+		</div>
+	</div>
 	
+	<div id='subtext'></div>
 
 	<!-- Logo -->
 	<div id='logo'></div>
@@ -136,5 +178,6 @@
 	
 	<!-- Pages -->
 	<section class='page'></section>
+	<a href="" id="appStore"></a>
 </body>
 </html>

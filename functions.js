@@ -20,6 +20,15 @@ var moveHand = function() {
 	}
 	$('#ticker').css("width", handWidth);
 	$('#hand').css("top", handPosition);
+	
+	minutesS = myDate.getMinutes();
+	secondsS = myDate.getSeconds();
+	
+	if(minutesS< 10) minutesS = "0" + minutesS;
+	if(secondsS< 10) secondsS = "0" + secondsS;
+	
+	
+	//$('#subtext').text("it's " + myDate.getHours() + ':' + minutesS + ':' + secondsS);
 };
 
 var enableAnimations = function() {
@@ -71,24 +80,17 @@ var setBars = function(calculations, mode) {
 
 $( window ).scroll(function() {
 	scrollTop = $(window).scrollTop();
-	height = pageHeight;
-	newPage = parseInt(scrollTop/height);
+	if(scrollTop > 0 && !direction) direction = 1;
+	if(scrollTop < 0 && !direction) direction = -1;
+	if(scrollTop == 0)
+	{
+		page = page + direction;
 	
-	
-	if(scrollTop > 0){
-			$('#feedback').css("color", green);
-	}
-
-	if(scrollTop < 0){
-			$('#feedback').css("color", yellow);
-	}
-
-	
-	$('#feedback').text(scrollTop);
-	
-	if(newPage != page) {
-		page = newPage;
+		if(page < 0) page = 0;
+		if(page > pagesCount) page = pagesCount;
+		
 		setPage(page);
+		direction = 0;
 	}
 });
 

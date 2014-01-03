@@ -26,6 +26,10 @@ body {
 	overflow:hidden;
 	-webkit-transition: .75s ease-in;
 }
+
+#handScreen{
+	overflow:visible;
+}
 #pretwillight, #posttwillight, #prenight, #postnight, #nightspace, #twillightspace {
 	-webkit-transition: .75s ease-in;
 }
@@ -92,7 +96,8 @@ body {
 	top:50%;
 	margin-left:-40px;
 	margin-top:-40px;
-	opacity:1;
+	opacity:0;
+	-webkit-transition: .75s ease-in;
 }
 
 .page {
@@ -124,6 +129,7 @@ body {
 }
 
 #button {
+	opacity: .5;
 	height: 20px;
 	width: 40px;
 	position:fixed;
@@ -133,6 +139,53 @@ body {
 	margin-right:-20px;
 	-webkit-transition: .75s ease-in;
     -webkit-mask-image: url('arrow.png');
+}
+
+#owl {
+	opacity: 1;
+	height: 80px;
+	width: 80px;
+
+	position:fixed;
+	right: 40px;
+	bottom: 40px;
+	
+	-webkit-transition: .75s ease-in;
+    -webkit-mask-image: url('owl.png');
+}
+
+
+#appStore {
+	background: black;
+	
+	width: 240px;
+	height: 85px;
+	
+	background-image:url('appStore.png');
+	
+	position:fixed;
+	left: 50%;
+	top: 50%;
+	margin-left:160px;
+	margin-top:-32px;
+	
+	border-radius: 10px;
+	-webkit-transition: .75s ease-in;
+	
+	opacity:0;
+}
+
+#backButton {
+	opacity: .5;
+	height: 20px;
+	width: 40px;
+	position:fixed;
+	right: 50%;
+	top: 50%;
+	margin-top:-324px;
+	margin-right:-20px;
+	-webkit-transition: .75s ease-in;
+    -webkit-mask-image: url('backArrow.png');
 }
 
 
@@ -156,3 +209,27 @@ body {
 	text-align:left;
 	font-size: 4em;
 }
+
+
+#subtext{
+	font-family: 'Tahoma';
+	font-size:12px;
+	padding:10px;
+	height: 204px;
+	position:fixed;
+	right: 50%;
+	margin-right:-380px;
+	margin-top:60px;
+	top: 50%;
+	overflow:hidden;
+	-webkit-transition: .75s ease-in;
+	width:200px;
+	text-align:left;
+}
+
+
+
+
+
+
+
